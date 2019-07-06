@@ -1,0 +1,134 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Elysium Sport Booking</title>
+    <link rel="shortcut icon" type="~/favicon.ico" href="favicon.ico" />
+
+    <!-- Bootstrap core CSS -->
+     <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="css/bootstrap.css" rel="stylesheet" />
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/bootstrap.js"></script>
+      <script src="jquery/jquery.js"></script>
+      <script src="jquery/jquery.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <style>
+      body {
+        padding-top: 20px;
+      }
+      @media (min-width: 992px) {
+        body {
+          padding-top: 0px;
+        }
+      }
+      .myfooter{
+          position:fixed;
+          left:0px;
+          bottom:0px;
+          height:20px;
+          width:100%;
+      }
+
+      .para{
+          text-align:center;
+          width:auto;
+      }
+
+      .button{
+            margin:auto;
+            display:block;
+            justify-content: center;
+      }
+
+    </style>
+  </head>
+
+  <body>
+      <form id="form1" runat="server">
+    <!-- Login Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="E.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Elysium Sport Booking
+       </a>
+      <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="Homepage.aspx">Homepage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="About.aspx">About us</a>
+          </li>
+          <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  More about us
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="Galery">Galery</a>
+                </div>
+              </li>
+        </ul>
+
+          <%
+            if (Session["uType"] == null)
+            {%>
+                 <a class="btn btn-outline-info" href="Mypage.aspx">My Page</a>
+            <%}
+                else if (Session["uType"].Equals("Admin"))
+                {%>
+                    <a class="btn btn-outline-success" href="Personal.aspx" runat="server">View Profile</a>&nbsp;
+                    <a class="btn btn-outline-success" href="View_User.aspx" runat="server">Check Member</a>&nbsp;
+                    <a class="btn btn-outline-success" href="Admin_Schedule.aspx" runat="server">Check Schedule</a>&nbsp;
+                    <a class="btn btn-outline-danger" href="#" runat="server" onserverclick="Logout_Click">Logout</a>
+                <%}
+                else if (Session["uType"].Equals("Instructor"))
+                {%>
+                    <a class="btn btn-outline-success" href="Personal.aspx" runat="server">View Profile</a>&nbsp;
+                    <a class="btn btn-outline-success" href="Instructor_Schedule.aspx" runat="server">Check Schedule</a>&nbsp;
+                    <a class="btn btn-outline-danger" href="#" runat="server" onserverclick="Logout_Click">Logout</a>
+                <%}
+                else if (Session["uType"].Equals("Member"))
+                {%>
+                    <a class="btn btn-outline-success" href="Personal.aspx" runat="server">View Profile</a>&nbsp;
+                    <a class="btn btn-outline-success" href="Member_Schedule.aspx" runat="server">Book Court</a>&nbsp;
+                    <a class="btn btn-outline-success" href="User_Schedule.aspx" runat="server">Check Schedule</a>&nbsp;
+                    <a class="btn btn-outline-danger" href="#" runat="server" onserverclick="Logout_Click">Logout</a>
+                <%}
+            %>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+
+    <!--Footer-->
+    <footer class="py-5 bg-dark myfooter"> 
+        <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Elysium Sport Booking 2018</p>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    </form>
+
+  </body>
+</html>
